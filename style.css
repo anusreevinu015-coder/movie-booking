@@ -1,0 +1,112 @@
+
+body {
+  font-family: Arial;
+  background-color: #0f172a;
+  color: white;
+  text-align: center;
+}
+
+/* Title */
+.title {
+  margin: 20px;
+}
+
+/* Movie cards */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.card {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 200px;
+  border-radius: 10px;
+}
+
+button {
+  padding: 10px 15px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* SEAT DESIGN */
+#seats {
+  display: grid;
+  grid-template-columns: repeat(5, 50px);
+  gap: 10px;
+  justify-content: center;
+  margin: 20px;
+}
+
+.seat {
+  width: 50px;
+  height: 50px;
+  background: #334155;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.seat.selected {
+  background: green;
+}
+
+.seat.booked {
+  background: red;
+  cursor: not-allowed;
+}.screen {
+  background: #e5e7eb;
+  color: black;
+  padding: 10px;
+  margin: 20px auto;
+  width: 60%;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+/* Legend */
+.legend {
+  margin: 20px;
+}
+
+.legend span {
+  display: inline-block;
+  margin: 5px;
+}
+
+/* Seat grid */
+#seats {
+  display: grid;
+  grid-template-columns: repeat(8, 40px);
+  gap: 10px;
+  justify-content: center;
+}
+
+.seat {
+  width: 40px;
+  height: 40px;
+  background: #334155;
+  border-radius: 5px;
+}
+
+.seat.selected {
+  background: green;
+}
+
+.seat.booked {
+  background: red;
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Select Seats</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h2>🎟 Select Your Seats</h2>
+
+<div class="screen">SCREEN</div>
+
+<div id="seats"></div>
+
+<div class="legend">
+  <span class="seat available"></span> Available
+  <span class="seat selected"></span> Selected
+  <span class="seat booked"></span> Booked
+</div>
+
+
+
+<script>
+const seatContainer = document.getElementById("seats");
+
+const rows = ["A", "B", "C", "D", "E"];
+const seatsPerRow = 10;
+
+for (let r = 0; r < rows.length; r++) {
+    for (let s = 1; s <= seatsPerRow; s++) {
+        const seat = document.createElement("div");
+        seat.classList.add("seat", "available");
+        seat.innerText = rows[r] + s;
+
+        seat.onclick = function () {
+            selectSeat(seat);
+        };
+
+        seatContainer.appendChild(seat);
+    }
+}
+let selectedSeats = [];
+
+function selectSeat(element) {
+    const seat = element.innerText;
+
+    if (selectedSeats.includes(seat)) {
+        selectedSeats = selectedSeats.filter(s => s !== seat);
+        element.style.background = "green";
+    } else {
+        selectedSeats.push(seat);
+        element.style.background = "orange";
+    }
+}
+
+function confirmBooking() {
+    if (selectedSeats.length === 0) {
+        alert("Please select at least one seat!");
+        return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const movie = params.get("movie") || "Unknown Movie";
+
+    window.location.href =
+        "payment.html?movie=" + encodeURIComponent(movie) +
+        "&seats=" + encodeURIComponent(selectedSeats.join(","));
+}
+</script>
+<button onclick="confirmBooking()" 
+style="display:block; margin:30px auto; padding:12px 20px; background:orange; color:white; border:none; cursor:pointer;">
+    Confirm Booking
+</button>
+</body>
+</html>

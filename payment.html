@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body style="font-family:Arial; text-align:center; background:#111; color:white;">
+
+<h2>💳 Payment Page</h2>
+
+<div style="margin-top:20px; padding:20px;">
+
+    <p id="movie"></p>
+    <p id="seats"></p>
+
+    <h3>Select Payment Method</h3>
+
+    <button onclick="selectMethod('UPI')">UPI</button>
+    <button onclick="selectMethod('Card')">Card</button>
+    <button onclick="selectMethod('Wallet')">Wallet</button>
+
+    <br><br>
+
+    <button onclick="payNow()" style="background:green; color:white; padding:10px 20px; border:none; cursor:pointer;">
+        Pay Now
+    </button>
+
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+
+document.getElementById("movie").innerText =
+"Movie: " + params.get("movie");
+
+document.getElementById("seats").innerText =
+"Seats: " + params.get("seats");
+
+let selectedMethod = "";
+
+function selectMethod(method) {
+    selectedMethod = method;
+    alert(method + " selected");
+}
+
+function payNow() {
+    if (selectedMethod === "") {
+        alert("Please select a payment method");
+        return;
+    }
+
+    alert("Payment Successful 🎉 using " + selectedMethod);
+
+    window.location.href =
+    "confirm.html?movie=" + params.get("movie") +
+    "&seats=" + params.get("seats") +
+    "&payment=" + selectedMethod;
+}
+</script>
+
+</body>
+</html>

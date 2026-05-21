@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking Confirmed</title>
+
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial;
+            background-color: #111;
+            color: white;
+        }
+
+        .box {
+            margin-top: 100px;
+            padding: 30px;
+            border-radius: 10px;
+            background: #222;
+            display: inline-block;
+        }
+
+        h1 {
+            color: lime;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 20px;
+            border: none;
+            background: orange;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: red;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h1>🎉 Booking Confirmed!</h1>
+    <p>Your seats have been successfully booked.</p>
+
+    <p><b>Movie:</b> <span id="movieName"></span></p>
+    <p><b>Seats:</b> <span id="seatList"></span></p>
+    <p><b>Total:</b> ₹<span id="totalPrice"></span></p>
+
+    <button onclick="goHome()">Back to Home</button>
+</div>
+
+<script>
+// ✅ get data from URL
+
+const params = new URLSearchParams(window.location.search);
+
+// get values
+const movie = params.get("movie");
+const seats = params.get("seats");
+const payment = params.get("payment");
+
+// show values
+document.getElementById("movieName").innerText = movie || "Not Selected";
+document.getElementById("seatList").innerText = seats || "No Seats Selected";
+
+// calculate price
+if (seats) {
+    const seatArray = seats.split(",");
+    const total = seatArray.length * 150;
+    document.getElementById("totalPrice").innerText = total;
+} else {
+    document.getElementById("totalPrice").innerText = 0;
+}
+
+function goHome() {
+    window.location.href = "index.html";
+}
+</script>
+
+
+</body>
+</html>
